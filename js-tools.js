@@ -1,7 +1,8 @@
-/*             Menu           */
-/* 1. printf --------- line 6 */
-/* 2. loadbootstrap - line 11 */
-/* 3. alertbox ------ line 16 */
+/*             Menu             */
+/* 1. printf ----------- line 6 */
+/* 2. loadbootstrap --- line 11 */
+/* 3. alertbox -------- line 16 */
+/* 4. getURLparameter - line 00 */
 
 function printf(string) {
 	var inbody = document.body.innerHTML;
@@ -19,4 +20,16 @@ function alertbox(title,word,type) {
     var id = Math.random()*1000000000;
     var inbody = document.body.innerHTML;
     document.body.innerHTML = '<div class="container"><div class="row clearfix"><div class="col-md-12 column"><div class="alert alert-' + type + ' alert-dismissable" id="' + id + '"><button type="button" class="close" data-dismiss="alert" aria-hidden="true" onclick="document.getElementById(' + id + ').style.display = \'none\';">×</button><h4>' + title + '</h4>' + word + '</div></div></div></div>' + inbody;
+}
+
+function getURLparameter(variable){
+       var query = window.location.search.substring(1);
+       var vars = query.split("&");
+       for (var i=0;i<vars.length;i++) {
+               var pair = vars[i].split("=");
+               if (pair[0] == variable) {
+return pair[1];
+}
+       }
+       return(false);
 }
