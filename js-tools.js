@@ -2,7 +2,7 @@
 /* 1. printf ---------- line 07 */
 /* 2. loadbootstrap --- line 12 */
 /* 3. alertbox -------- line 17 */
-/* 4. getURLparameter - line 00 */
+/* 4. getURLparameter - line 25 */
 
 function printf(string) {
 	var inbody = document.body.innerHTML;
