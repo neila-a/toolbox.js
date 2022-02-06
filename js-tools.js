@@ -1,7 +1,7 @@
 /*             Menu             */
-/* 1. printf ----------- line 6 */
-/* 2. loadbootstrap --- line 11 */
-/* 3. alertbox -------- line 16 */
+/* 1. printf ---------- line 07 */
+/* 2. loadbootstrap --- line 12 */
+/* 3. alertbox -------- line 17 */
 /* 4. getURLparameter - line 00 */
 
 function printf(string) {
