@@ -1,10 +1,11 @@
 /*             Menu             */
-/* 1. printf ---------- line 09 */
-/* 2. loadbootstrap --- line 14 */
-/* 3. alertbox -------- line 19 */
-/* 4. getURLparameter - line 30 */
-/* 5. importScripts --- line 42 */
-/* 6. codespace ------- line 76 */
+/* 1. printf ---------- line 10 */
+/* 2. loadbootstrap --- line 15 */
+/* 3. alertbox -------- line 20 */
+/* 4. getURLparameter - line 31 */
+/* 5. importScripts --- line 43 */
+/* 6. codespace ------- line 77 */
+/* 7. importCss ------- line 99 */
 
 function printf(string) {
 	var inbody = document.body.innerHTML;
@@ -76,6 +77,7 @@ if (!importScripts) {
 class codespace {
 	/* ES2015 or UP */
 	constructor(htmldomname) {
+		importCss("https://neila-a.github.io/toolbox.js/lib/codemirror.css");
 		importScripts("https://cdn.staticfile.org/jquery/3.6.0/jquery.js");
 		importScripts("https://neila-a.github.io/toolbox.js/lib/codemirror.js");
 		CodeMirror.fromTextArea(document.getElementById(htmldomname), {
@@ -93,4 +95,9 @@ class codespace {
 					.style.cursor = "text";
 			});
 	}
+}
+
+function importCss(filesource) {
+	var inhead = document.head.innerHTML;
+	document.head.innerHTML = inhead + '<link rel="stylesheet" href="' +  filesource + '">';
 }
