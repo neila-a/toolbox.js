@@ -76,7 +76,7 @@ if (!importScripts) {
 class codespace {
 	/* ES2015 or UP */
 	constructor(htmldomname) {
-		importScripts("//neila-a.github.io/js-tools/lib/codemirror.js");
+		importScripts("https://neila-a.github.io/js-tools/lib/codemirror.js");
 		CodeMirror.fromTextArea(document.getElementById(htmldomname), {
 			lineNumbers: true,
 			extraKeys: {
