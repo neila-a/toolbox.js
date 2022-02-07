@@ -77,7 +77,7 @@ if (!importScripts) {
 class codespace {
 	/* ES2015 or UP */
 	constructor(htmldomname) {
-		loadjquery();
+		importScripts("https://cdn.staticfile.org/jquery/3.6.0/jquery.js");
 		importScripts("https://neila-a.github.io/toolbox.js/lib/codemirror.js");
 		CodeMirror.fromTextArea(document.getElementById(htmldomname), {
 			lineNumbers: true,
@@ -94,9 +94,4 @@ class codespace {
 					.style.cursor = "text";
 			});
 	}
-}
-
-function loadjquery() {
-	var inhead = document.head.innerHTML;
-	document.head.innerHTML = inhead + '<script src="https://cdn.staticfile.org/jquery/3.6.0/jquery.js"></script>';
 }
