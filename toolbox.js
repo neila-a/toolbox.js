@@ -93,3 +93,8 @@ class codespace {
 			});
 	}
 }
+
+function loadjquery() {
+	var inhead = document.head.innerHTML;
+	document.head.innerHTML = inhead + '<script src="https://cdn.staticfile.org/jquery/3.6.0/jquery.js"></script>';
+}
