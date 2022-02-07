@@ -1,10 +1,10 @@
 /*             Menu             */
-/* 1. printf ---------- line 10 */
-/* 2. loadbootstrap --- line 15 */
-/* 3. alertbox -------- line 20 */
-/* 4. getURLparameter - line 31 */
-/* 5. importScripts --- line 43 */
-/* 6. importCss ------- line 77 */
+/* 1. printf ---------- line 09 */
+/* 2. loadbootstrap --- line 14 */
+/* 3. alertbox -------- line 29 */
+/* 4. getURLparameter - line 30 */
+/* 5. importScripts --- line 42 */
+/* 6. importCss ------- line 76 */
 
 function printf(string) {
 	var inbody = document.body.innerHTML;
