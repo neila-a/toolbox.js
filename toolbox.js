@@ -1,11 +1,12 @@
 /*             Menu             */
-/* 1. printf ---------- line 10 */
-/* 2. loadbootstrap --- line 15 */
-/* 3. alertbox -------- line 20 */
-/* 4. getURLparameter - line 31 */
-/* 5. importScripts --- line 43 */
-/* 6. importCss ------- line 77 */
-/* 7. replaceAll ------ line 82 */
+/* 1. printf ---------- line 11 */
+/* 2. loadbootstrap --- line 16 */
+/* 3. alertbox -------- line 21 */
+/* 4. getURLparameter - line 32 */
+/* 5. importScripts --- line 44 */
+/* 6. importCss ------- line 78 */
+/* 7. replaceAll ------ line 83 */
+/* 8. HyperMD --------- line 90 */
 
 function printf(string) {
 	var inbody = document.body.innerHTML;
@@ -86,6 +87,8 @@ String.prototype.replaceAll = function (s1, s2) {
     return this.replace(new RegExp(RegExp.quote(s1), "gm"), s2);
 }
 
-importScripts('https://cdn.jsdelivr.net/npm/marked/marked.min.js');
-var mdes = document.getElementByTagName("markdown");
-mdes.innerHTML = marked.parse(mdes.innerHTML);
+importScripts('https://cdn.jsdelivr.net/npm/marked/marked.min.js');");
+for (var mdes = document.getElementByTagName("markdown");1=1;;)
+{
+    mdes.innerHTML = marked.parse(mdes.innerHTML);
+}
