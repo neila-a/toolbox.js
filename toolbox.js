@@ -87,8 +87,8 @@ String.prototype.replaceAll = function (s1, s2) {
     return this.replace(new RegExp(RegExp.quote(s1), "gm"), s2);
 }
 
-importScripts('https://cdn.jsdelivr.net/npm/marked/marked.min.js');");
+importScripts('https://cdn.jsdelivr.net/npm/marked/marked.min.js');
 for (var mdes = document.getElementByTagName("markdown");1=1;;)
 {
-    mdes.innerHTML = marked.parse(mdes.innerHTML);
+    mdes[i].innerHTML = marked.parse(mdes[i].innerHTML);
 }
