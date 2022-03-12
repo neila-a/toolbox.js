@@ -1,19 +1,11 @@
-/*               Menu            */
-/* 1. printf ----------- line 08 */
-/* 2. importScripts ---- line 13 */
-/* 3. importCss -------- line 47 */
-/* 4. replaceAll ------- line 52 */
-/* 5. $() -------------- line 59 */
-/* 6. new DocumentElement - line */
-
-function printf(string) {
-	var inbody = document.body.innerHTML;
-	document.body.innerHTML = inbody + string;
-}
-
-if (!importScripts) {
-	var importScripts = (function (globalEval) {
-		var xhr = new XMLHttpRequest;
+function printf(string) {				/*                Menu              */
+	var inbody = document.body.innerHTML;		/* 1. printf -------------- line 01 */
+	document.body.innerHTML = inbody + string;	/* 2. importScripts ------- line 06 */
+}							/* 3. importCss ----------- line 40 */
+							/* 4. replaceAll ---------- line 45 */
+if (!importScripts) {					/* 5. $() ----------------- line 52 */
+	var importScripts = (function (globalEval) {	/* 6. Function.bind ------- line 56 */
+		var xhr = new XMLHttpRequest;		/* 7. new DocumentElement - line 74 */
 		return function importScripts() {
 			var
 				args = Array.prototype.slice.call(arguments),
@@ -59,6 +51,24 @@ String.prototype.replaceAll = function (s1, s2) {
 
 function $(query) {
 return document.querySelector(query);
+}
+
+Function.prototype.bind = Function.prototype.bind || function(context){
+	//确保调用bind方法的一定要是一个函数
+	if(typeof this !== "function"){
+		throw new TypeError("Function.prototype.bind - what is trying to be bound is not callable");
+	}
+	var args = Array.prototype.slice.call(arguments, 1);
+	var self = this;
+	var F = function(){};
+	F.prototype = this.prototype;
+	var bound = function(){
+		var innerArgs = Array.prototype.slice.call(arguments);
+		var finalArgs = args.concat(innerArgs);
+		return self.apply(this instanceof F ? this : context || this, finalArgs);
+	}
+	bound.prototype = new F();
+	return bound;
 }
 
 function DocumentElement(tagname) {
