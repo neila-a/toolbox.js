@@ -1,9 +1,10 @@
-/*             Menu           */
-/* 1. printf -------- line 08 */
-/* 2. importScripts - line 13 */
-/* 3. importCss ----- line 47 */
-/* 4. replaceAll ---- line 52 */
-/* 5. HyperMD ------- line 59 */
+/*               Menu            */
+/* 1. printf ----------- line 08 */
+/* 2. importScripts ---- line 13 */
+/* 3. importCss -------- line 47 */
+/* 4. replaceAll ------- line 52 */
+/* 5. $() -------------- line 59 */
+/* 6. new DocumentElement - line */
 
 function printf(string) {
 	var inbody = document.body.innerHTML;
@@ -56,8 +57,10 @@ String.prototype.replaceAll = function (s1, s2) {
     return this.replace(new RegExp(RegExp.quote(s1), "gm"), s2);
 }
 
-importScripts('https://cdn.jsdelivr.net/npm/marked/marked.min.js');
-var mdes = document.getElementByTagName("markdown");
-for (var i = 0;i < mdes.length;i++;) {
-    mdes[i].innerHTML = marked.parse(mdes[i].innerHTML);
+function $(query) {
+return document.querySelector(query);
+}
+
+function DocumentElement(tagname) {
+return document.createElement(tagname);
 }
