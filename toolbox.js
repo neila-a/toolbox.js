@@ -6,8 +6,8 @@ function printf(string) {				/*                Menu              */
 if (!importScripts) {					/* 5. $() ----------------- line 052 */
 	var importScripts = (function (globalEval) {	/* 6. Function.bind ------- line 056 */
 		var xhr = new XMLHttpRequest;		/* 7. vis(原vis.js) ------- line 074 */
-		return function importScripts() {       /* 8. new DocumentElement - line 121 */
-			var
+		return function importScripts() {       /* 7.1 VDom --------------- line 082 */
+			var                             /* 8. new DocumentElement - line 121 */
 				args = Array.prototype.slice.call(arguments),
 				len = args.length,
 				i = 0,
