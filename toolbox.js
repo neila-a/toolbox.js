@@ -1,14 +1,14 @@
-function printf(string) {				/*                Menu              */
-	var inbody = document.body.innerHTML;		/* 1. printf -------------- line 001 */
-	document.body.innerHTML = inbody + string;	/* 2. importScripts ------- line 006 */
-}							/* 3. importCss ----------- line 040 */
-							/* 4. replaceAll ---------- line 045 */
-if (!importScripts) {					/* 5. $() ----------------- line 052 */
-	var importScripts = (function (globalEval) {	/* 6. Function.bind ------- line 056 */
-		var xhr = new XMLHttpRequest;		/* 7. vis(原vis.js) ------- line 074 */
-		return function importScripts() {       /* 7.1 VDom --------------- line 082 */
-			var                             /* 8. new DocumentElement - line 121 */
-				args = Array.prototype.slice.call(arguments),
+function printf(string) {				                        /*                 Menu               */
+	var inbody = document.body.innerHTML;		                        /* 01. printf -------------- line 001 */
+	document.body.innerHTML = inbody + string;	                        /* 02. importScripts ------- line 006 */
+}							                        /* 03. importCss ----------- line 040 */
+							                        /* 04. replaceAll ---------- line 045 */
+if (!importScripts) {					                        /* 05. $() ----------------- line 052 */
+	var importScripts = (function (globalEval) {	                        /* 06. String.delete ------- line 056 */
+		var xhr = new XMLHttpRequest;		                        /* 07. Function.bind ------- line 061 */
+		return function importScripts() {                               /* 08. VDom ---------------- line 079 */
+			var                                                     /* 09. vis(原vis.js) ------- line 091 */
+				args = Array.prototype.slice.call(arguments),	/* 10. new DocumentElement - line 145 */
 				len = args.length,
 				i = 0,
 				meta, data, content;
@@ -53,14 +53,19 @@ function $(query) {
 return document.querySelector(query);
 }
 
+String.prototype.delete = function (deletestring) {
+    var r = this.replace(deletestring, "");
+    return r;
+}
+
 Function.prototype.bind = Function.prototype.bind || function(context){
-	//确保调用bind方法的一定要是一个函数
+	/* 确保调用bind方法的一定要是一个函数 */
 	if(typeof this !== "function"){
-		throw new TypeError("Function.prototype.bind - what is trying to be bound is not callable");
+		console.error("ToolBox.JS Error: Function.prototype.bind Error: what is trying to be bound is not callable");
 	}
 	var args = Array.prototype.slice.call(arguments, 1);
 	var self = this;
-	var F = function(){};
+	var F = function () {};
 	F.prototype = this.prototype;
 	var bound = function(){
 		var innerArgs = Array.prototype.slice.call(arguments);
@@ -71,53 +76,74 @@ Function.prototype.bind = Function.prototype.bind || function(context){
 	return bound;
 }
 
+{
+    let readytoparser = document.documentElement.outerHTML;
+    if (document.compatMode == "CSS1Compat") {
+        readytoparser = `<!DOCTYPE html>` + document.documentElement.outerHTML;
+    }
+    window.vdom = new DOMParser().parseFromString(readytoparser, "text/html");
+    vdom.render = function () {
+        document.open();
+        document.write(vdom.documentElement.outerHTML);
+    };
+}
+
 const vis = {
-    init: function () {
-        String.prototype.delete = function (deletestring) {
-            var r = this.replace(deletestring, "");
-            return r;
-        }
+    reinit: function () {
         var dbh_vis = document.head.innerHTML;
         var dbi_vis = document.body.innerHTML;
-        if (vis.data.map == "") {   
-            vis.data.map = document.documentElement.outerHTML;
-            if (document.compatMode == "CSS1Compat") {
-            	vis.data.map = `<!DOCTYPE html>` + document.documentElement.outerHTML;
-            }
-            var parser_vis = new DOMParser();
-            window.vdom = parser_vis.parseFromString(vis.data.map, "text/html");
-            vdom.render = function () {
-                document.open();
-                document.write(vdom.documentElement.outerHTML);
-            };
-        }
-        var regin_vis = /{{.*}}/g;
-        function rep_vis(varname_vis) {
+        var regin1_vis = /{{.*}}/gs;
+        function rep1_vis(varname_vis) {
             /* a表示正则匹配到的内容  b表示大括号里的内容  c表示匹配到的内容出现的位置 */
             var ro_vis = varname_vis.delete("{{").delete("}}").delete(/ /g);
             try {
                 var r_vis = eval(ro_vis);
                 return r_vis;
-            } catch (err) {
-                console.error(`Vis Error: ${err}`);
+            } catch (error) {
+                console.error(`ToolBox.JS Error: Vis Error: ${error}`);
                 return varname_vis;
             }
         }
-        document.body.innerHTML = dbi_vis.replace(regin_vis, rep_vis);
-        document.head.innerHTML = dbh_vis.replace(regin_vis, rep_vis);
         var ifels_vis = document.getElementsByTagName("if");
         for (var i = 0;i<ifels_vis.length;i++) {
             try {
-                eval(`if (${ifels_vis[i].getAttribute("cond")}) {ifels_vis[i].innerHTML = ifels_vis[i].innerHTML.delete("<!--").delete("-->");} else {ifels_vis[i].innerHTML = "<!--${ifels_vis[i].innerHTML.replace(/<!--.*-->/g, '')}-->";}`);
+                eval(`
+                    if (${ifels_vis[i].getAttribute("cond")}) {
+                        ifels_vis[i].innerHTML = ifels_vis[i].innerHTML.delete("<!--").delete("-->").delete("nouse");
+                    } else {
+                        ifels_vis[i].innerHTML = "<!--${ifels_vis[i].innerHTML.replace(/\({.*}\)/gs, function (s) {
+                            return s.replace("({", "(nouse{")
+                        })}-->";
+                    }
+                `);
             } catch {}
         }
-    },
-    data: {
-        map: ""
+        var regin2_vis = /\({.*}\)/gs;
+        function rep2_vis(replacereturn) {
+            var r = eval(`
+                (function () {
+                    try {
+                        ${replacereturn.delete("({").delete("})")}
+                    } catch (error) {
+                        console.error("ToolBox.JS Error: Vis Error: " + error);
+                        return "visctr";
+                    }
+                })()
+            `);
+            if (r == "visctr") {
+                return replacereturn;
+            } else {
+                return r;
+            }
+        }
+        document.body.innerHTML = dbi_vis.replace(regin1_vis, rep1_vis).replace(regin2_vis, rep2_vis);
+        document.head.innerHTML = dbh_vis.replace(regin1_vis, rep1_vis).replace(regin2_vis, rep2_vis);
     }
 }
-vis.init();
+vis.reinit();
 
-function DocumentElement(tagname) {
-return document.createElement(tagname);
+class DocumentElement {
+    constructor(tagname) {
+        return document.createElement(tagname);
+    }
 }
