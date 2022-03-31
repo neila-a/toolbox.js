@@ -1,16 +1,16 @@
 function printf(string) {				        /*                 Menu               */
-    var inbody = document.body.innerHTML;		        /* 01. printf -------------- line 001 */
-    document.body.innerHTML = inbody + string;	                /* 02. importScripts ------- line 006 */
-}							        /* 03. importCss ----------- line 040 */
-								/* 04. replaceAll ---------- line 045 */
-if (!importScripts) {					        /* 05. $() ----------------- line 052 */
-    var importScripts = (function (globalEval) {	        /* 06. String.delete ------- line 056 */
-        var xhr = new XMLHttpRequest;		                /* 07. Function.bind ------- line 061 */
-        return function importScripts() {                       /* 08. VDom ---------------- line 079 */
-            var                                                 /* 09. AjaxRequire --------- line 091 */
-                args = Array.prototype.slice.call(arguments),	/* 10. vis(原vis.js) ------- line 121 */
-                len = args.length,				/* 11. new DocumentElement - line 175 */
-                i = 0,
+    var inbody = document.body.innerHTML;		        /* GitHub: Ctrl+L     VS Code: Ctrl+G */
+    document.body.innerHTML = inbody + string;	                /* 01. printf -------------- line 001 */
+}							        /* 02. importScripts ------- line 006 */
+								/* 03. importCss ----------- line 040 */
+if (!importScripts) {					        /* 04. replaceAll ---------- line 045 */
+    var importScripts = (function (globalEval) {	        /* 05. $() ----------------- line 052 */
+        var xhr = new XMLHttpRequest;		                /* 06. String.delete ------- line 056 */
+        return function importScripts() {                       /* 07. Function.bind ------- line 061 */
+            var                                                 /* 08. VDom ---------------- line 079 */
+                args = Array.prototype.slice.call(arguments),	/* 09. AjaxRequire --------- line 091 */
+                len = args.length,				/* 10. vis(原vis.js) ------- line 121 */
+                i = 0,						/* 11. new DocumentElement - line 175 */
                 meta, data, content;
             for (; i < len; i++) {
                 if (args[i].substr(0, 5)
