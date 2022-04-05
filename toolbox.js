@@ -129,7 +129,7 @@ const vis = {
     reinit: function () {
         var dbh_vis = document.head.innerHTML;
         var dbi_vis = document.body.innerHTML;
-        var regin1_vis = /{{.*}}/gs;
+        var regin1_vis = /{{(.*?)}}/gs;
         function rep1_vis(varname_vis) {
             /* a表示正则匹配到的内容  b表示大括号里的内容  c表示匹配到的内容出现的位置 */
             var ro_vis = varname_vis.delete("{{").delete("}}").delete(/ /g);
@@ -159,7 +159,7 @@ const vis = {
                 `);
             } catch { }
         }
-        var regin2_vis = /\({.*}\)/gs;
+        var regin2_vis = /\({(.*?)}\)/gs;
         function rep2_vis(replacereturn) {
             var r = eval(`
                 (function () {
